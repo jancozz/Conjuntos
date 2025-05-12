@@ -47,7 +47,7 @@ class View:
         self.first_set_name_entry.pack(pady=(0,20))
 
         # Widgets para las operaciones entre conjuntos
-        self.operation_label = tk.Label(self.operations_tab, text="Escoger Operacion:")
+        self.operation_label = tk.Label(self.operations_tab, text="Operacion:")
         self.operation_label.pack()
 
         self.operation_var = tk.StringVar(self.operations_tab)
