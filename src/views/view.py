@@ -23,16 +23,16 @@ class View:
 
         # Widgets para la creación de conjuntos
         self.set_name_label = tk.Label(self.create_set_tab, text="Nombre:")
-        self.set_name_label.pack(pady=(40,0))
+        self.set_name_label.pack(pady=(40, 0))
 
         self.set_name_entry = tk.Entry(self.create_set_tab, width=10)
-        self.set_name_entry.pack(pady=(0,20))
+        self.set_name_entry.pack(pady=(0, 20))
 
         self.set_elements_label = tk.Label(self.create_set_tab, text="Elementos (separados por comas):")
         self.set_elements_label.pack()
 
         self.set_elements_entry = tk.Entry(self.create_set_tab)
-        self.set_elements_entry.pack(pady=(0,20))
+        self.set_elements_entry.pack(pady=(0, 20))
 
         self.create_set_button = tk.Button(self.create_set_tab, text="Crear Conjunto", command=self.create_set)
         self.create_set_button.pack()
@@ -41,10 +41,10 @@ class View:
 
         # Cuadro de entrada para el primer conjunto
         self.first_set_name_label = tk.Label(self.operations_tab, text="Primer Conjunto:")
-        self.first_set_name_label.pack(pady=(20,0))
+        self.first_set_name_label.pack(pady=(20, 0))
 
         self.first_set_name_entry = tk.Entry(self.operations_tab, width=10)
-        self.first_set_name_entry.pack(pady=(0,20))
+        self.first_set_name_entry.pack(pady=(0, 20))
 
         # Widgets para las operaciones entre conjuntos
         self.operation_label = tk.Label(self.operations_tab, text="Operacion:")
@@ -54,15 +54,16 @@ class View:
         self.operation_var.set("Union")
 
         self.operations_menu = tk.OptionMenu(self.operations_tab, self.operation_var, "Union", "Interseccion",
-                                             "Differencia", "Differencia simetrica", "Es subconjunto", "Es superconjunto")
-        self.operations_menu.pack(pady=(0,20))
+                                             "Differencia", "Differencia simetrica", "Es subconjunto",
+                                             "Es superconjunto")
+        self.operations_menu.pack(pady=(0, 20))
 
         # Cuadro de entrada para el segundo conjunto
         self.second_set_name_label = tk.Label(self.operations_tab, text="Segundo Conjunto:")
         self.second_set_name_label.pack()
 
         self.second_set_name_entry = tk.Entry(self.operations_tab, width=10)
-        self.second_set_name_entry.pack(pady=(0,20))
+        self.second_set_name_entry.pack(pady=(0, 20))
 
         self.result_label = tk.Label(self.operations_tab, text="Resultado:")
         self.result_label.pack()
@@ -70,9 +71,11 @@ class View:
         self.result_display = tk.Label(self.operations_tab, text="")
         self.result_display.pack()
 
-        self.operation_button = tk.Button(self.operations_tab, text="Realizar Operacion", command=self.perform_operation)
-        self.operation_button.pack(pady=(20,0))
+        self.operation_button = tk.Button(self.operations_tab, text="Realizar Operacion",
+                                          command=self.perform_operation)
+        self.operation_button.pack(pady=(20, 0))
 
+    # Metodos
     def create_set(self):
         set_name = self.set_name_entry.get()
         elements = self.set_elements_entry.get()
@@ -96,9 +99,9 @@ class View:
         self.result_display.config(text=str(result))
 
     def on_create_set(self, set_name, elements):
-        """Método a ser llamado cuando se crea un nuevo conjunto."""
+        """Este método será invocado por el controlador cuando se cree un conjunto"""
         pass
 
     def on_perform_operation(self, first_set_name, second_set_name, operation):
-        """Método a ser llamado cuando se realiza una operación."""
+        """Este método será invocado por el controlador cuando se realice una operación"""
         pass
