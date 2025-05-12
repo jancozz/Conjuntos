@@ -1,18 +1,16 @@
 from tkinter import messagebox
 
-
 class Controller:
     def __init__(self, view, model):
         self.view = view
         self.model = model
 
-        # Bind view events to controller methods
         self.view.on_create_set = self.create_set
         self.view.on_perform_operation = self.perform_operation
 
     def create_set(self, set_name, elements):
         self.model.create_set(set_name, elements)
-        messagebox.showinfo("Conjunto Creado", f"Conjunto {set_name} creado exitosamente con elementos: {elements}")
+        messagebox.showinfo("Conjunto Creado", f"Conjunto {set_name} creado exitosamente: {elements}")
 
     def perform_operation(self, set_name, second_set_name, operation):
         try:

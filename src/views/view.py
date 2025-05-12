@@ -6,7 +6,6 @@ from tkinter import ttk
 class View:
     def __init__(self, master):
         self.master = master
-        # master.title("App envWin")
 
         # Crear el contenedor de las pestañas
         self.notebook = ttk.Notebook(master)
