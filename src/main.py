@@ -1,13 +1,14 @@
-import tkinter as tk
+from customtkinter import *
 from views.view import View
 from controllers.controller import Controller
 from models.model import SetOperationsModel as Model
 
 
 def main():
-    root = tk.Tk()
+    root = CTk()
     root.title("App Conjuntos")
-    root.geometry("450x350")
+    root.geometry("450x370")
+    set_appearance_mode("dark")
 
     model = Model()
     view = View(root)
