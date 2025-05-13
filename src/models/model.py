@@ -37,3 +37,13 @@ class SetOperationsModel:
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
         return set1.issuperset(set2)
+
+    def is_equal(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+        return set1 == set2
+
+    def is_disjoint(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+        return set1.isdisjoint(set2)

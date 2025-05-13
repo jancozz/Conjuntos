@@ -54,8 +54,8 @@ class View:
         self.operation_var.set("Union")
 
         self.operations_menu = tk.OptionMenu(self.operations_tab, self.operation_var, "Union", "Interseccion",
-                                             "Differencia", "Differencia simetrica", "Es subconjunto",
-                                             "Es superconjunto")
+                                             "Differencia", "Differencia simetrica", "Es subconjunto de",
+                                             "Es superconjunto de", "Igualdad", "Disjuncion")
         self.operations_menu.pack(pady=(0, 20))
 
         # Cuadro de entrada para el segundo conjunto

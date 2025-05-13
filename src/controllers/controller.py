@@ -23,10 +23,14 @@ class Controller:
                 result = self.model.difference(set_name, second_set_name)
             elif operation == "Differencia simetrica":
                 result = self.model.symmetric_difference(set_name, second_set_name)
-            elif operation == "Es subconjunto":
+            elif operation == "Es subconjunto de":
                 result = self.model.is_subset(set_name, second_set_name)
-            elif operation == "Es superconjunto":
+            elif operation == "Es superconjunto de":
                 result = self.model.is_superset(set_name, second_set_name)
+            elif operation == "Igualdad":
+                result = self.model.is_equal(set_name, second_set_name)
+            elif operation == "Disjuncion":
+                result = self.model.is_disjoint(set_name, second_set_name)
             self.view.update_result(result)
         except KeyError:
             messagebox.showerror("Operation Error", "Uno o ambos conjuntos no se encontraron.")
