@@ -1,3 +1,4 @@
+from ast import literal_eval
 from tkinter import messagebox
 
 
@@ -52,23 +53,19 @@ class Controller:
 
     def check_relation(self, first_set_name, second_set_name, relation_set, relation_type):
 
-        # Validar si los nombres de los conjuntos están vacíos
         if not first_set_name or not second_set_name:
             messagebox.showerror("Input Error", "Ambos nombres de conjuntos son requeridos.")
             return
 
-        # Verificar si los conjuntos existen en el modelo
         if first_set_name not in self.model.sets or second_set_name not in self.model.sets:
             messagebox.showerror("Set Error", "Uno o ambos conjuntos no existen.")
             return
 
-        # Evaluar la relación de pares ordenados
         try:
-            relation_set = eval(relation_set)  # Convierte el string a una lista de tuplas
+            relation_set = literal_eval(relation_set)  # Convierte el string a una lista de tuplas
             if not all(isinstance(pair, tuple) and len(pair) == 2 for pair in relation_set):
                 raise ValueError("La relación debe ser una lista de tuplas de dos elementos.")
 
-            # Validar el tipo de relación
             if relation_type == "Reflexiva":
                 result = self.model.is_reflexive(first_set_name, second_set_name, relation_set)
             elif relation_type == "Simetrica":

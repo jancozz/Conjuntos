@@ -166,16 +166,25 @@ class View:
         )
         self.relations_menu.pack(pady=(0, 15))
 
-        self.result_label = CTkLabel(self.relations_tab, text="Resultado:")
-        self.result_label.pack()
+        self.result_main_frame = CTkFrame(self.relations_tab, fg_color="#343434")
+        self.result_main_frame.pack(fill="both", padx=155)
 
-        self.result_relation_display = CTkLabel(self.relations_tab, text="-")
-        self.result_relation_display.pack()
+        self.result_label_frame = CTkFrame(self.result_main_frame, fg_color="#343434")
+        self.result_label_frame.pack(side="left", fill="both", expand=False, padx=(10, 0))
+
+        self.result_display_frame = CTkFrame(self.result_main_frame, fg_color="#343434")
+        self.result_display_frame.pack(side="right", fill="both", expand=True, padx=(0, 10))
+
+        self.result_label = CTkLabel(self.result_label_frame, text="Resultado:")
+        self.result_label.pack(side="right")
+
+        self.result_relation_display = CTkLabel(self.result_display_frame, text="-")
+        self.result_relation_display.pack(pady=5)
 
         self.validate_relation_button = CTkButton(self.relations_tab, text="Comprobar relacion",
                                                   command=self.check_relation,
                                                   fg_color="#134F6C")
-        self.validate_relation_button.pack()
+        self.validate_relation_button.pack(pady=(15, 0))
 
     # Metodos
     def create_set(self):

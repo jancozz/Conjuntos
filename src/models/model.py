@@ -66,9 +66,17 @@ class SetOperationsModel:
 
         self.check_elements_in_sets(relation_set, set1, set2)
 
-        for (a, b) in relation_set:
-            a, b = str(a), str(b)
-            if (a not in set1.union(set2)) or (a != b):
+        relation_set = [(str(a), str(b)) for (a, b) in relation_set]
+
+        combined_set = set1.union(set2)
+
+        for a in combined_set:
+            if (str(a), str(a)) not in relation_set:
+                return False
+        return True
+
+        for (a, a) in relation_set:
+            if (a, a) not in set1.union(set2):
                 return False
         return True
 
@@ -101,7 +109,8 @@ class SetOperationsModel:
         self.check_elements_in_sets(relation_set, set1, set2)
 
         for (a, b) in relation_set:
-            for (c, d) in relation_set:
-                if b == c and (a, d) not in relation_set:
-                    return False
+            for (b2, c) in relation_set:
+                if b == b2:
+                    if (a, c) not in relation_set:
+                        return False
         return True
