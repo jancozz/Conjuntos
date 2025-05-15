@@ -7,6 +7,7 @@ from customtkinter import *
 class View:
     def __init__(self, master):
         self.master = master
+        self.master.configure(bg="blue")
 
         # Crear el contenedor de las pestañas
         self.notebook = ttk.Notebook(master)
@@ -15,16 +16,17 @@ class View:
         # Crear las vistas para las pestañas
         self.create_set_tab = CTkFrame(self.notebook, fg_color="#343434")
         self.operations_tab = CTkFrame(self.notebook, fg_color="#343434")
+        self.relations_tab = CTkFrame(self.notebook, fg_color="#343434")
 
         # Añadir las pestañas al Notebook
-        self.notebook.add(self.create_set_tab, text="Crear Conjunto")
-        self.notebook.add(self.operations_tab, text="Operaciones")
+        self.notebook.add(self.create_set_tab, text=" Crear Conjunto ")
+        self.notebook.add(self.operations_tab, text="  Operaciones  ")
+        self.notebook.add(self.relations_tab, text="   Relaciones   ")
 
-        # ** VISTA "Crear Conjunto" **
+        # ** VISTA "CREAR CONJUNTO" **
 
-        # Widgets para la creación de conjuntos
         self.set_name_label = CTkLabel(self.create_set_tab, text="Nombre:", text_color="#e8e8e8")
-        self.set_name_label.pack(pady=(40, 0))
+        self.set_name_label.pack(pady=(30, 0))
 
         self.set_name_entry = CTkEntry(self.create_set_tab, width=70)
         self.set_name_entry.pack(pady=(0, 20))
@@ -39,34 +41,46 @@ class View:
                                            fg_color="#134F6C")
         self.create_set_button.pack()
 
-        # ** VISTA "Operaciones" **
+        self.created_sets_label = CTkLabel(self.create_set_tab, text="")
+        self.created_sets_label.pack(pady=(20, 0))
+
+        self.created_sets_display = CTkLabel(self.create_set_tab, text="")
+        self.created_sets_display.pack(pady=(0, 20))
+
+        # ** VISTA "OPERACIONES" **
 
         self.top_frame = CTkFrame(self.operations_tab, fg_color="#343434")
-        self.top_frame.pack(side="top", fill="both", padx=45, pady=(40, 20))
+        self.top_frame.pack(side="top", fill="both", padx=65, pady=(30, 0))
 
-        frame1 = CTkFrame(self.top_frame, fg_color="#343434")
-        frame1.pack(side="left", fill="both", expand=True, padx=40)
+        self.frame1 = CTkFrame(self.top_frame, fg_color="#343434")
+        self.frame1.pack(side="left", fill="both", expand=True, padx=(10, 0))
 
-        frame2 = CTkFrame(self.top_frame, fg_color="#343434")
-        frame2.pack(side="right", fill="both", expand=True, padx=40)
+        self.frame2 = CTkFrame(self.top_frame, fg_color="#343434")
+        self.frame2.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
         # Cuadro de entrada para el primer conjunto
-        self.first_set_name_label = CTkLabel(frame1, text="1er Conjunto:")
+        self.first_set_name_label = CTkLabel(self.frame1, text="1er Conjunto:")
         self.first_set_name_label.pack()
 
-        self.first_set_name_entry = CTkEntry(frame1, width=70)
+        self.first_set_name_entry = CTkEntry(self.frame1, width=70)
         self.first_set_name_entry.pack()
 
+        self.first_set_values_label_op = CTkLabel(self.frame1, text="[ ]")
+        self.first_set_values_label_op.pack()
+
         # Cuadro de entrada para el segundo conjunto
-        self.second_set_name_label = CTkLabel(frame2, text="2do Conjunto:")
+        self.second_set_name_label = CTkLabel(self.frame2, text="2do Conjunto:")
         self.second_set_name_label.pack()
 
-        self.second_set_name_entry = CTkEntry(frame2, width=70)
+        self.second_set_name_entry = CTkEntry(self.frame2, width=70)
         self.second_set_name_entry.pack()
+
+        self.second_set_values_label_op = CTkLabel(self.frame2, text="[ ]")
+        self.second_set_values_label_op.pack()
 
         # Widgets para las operaciones entre conjuntos
         self.operation_label = CTkLabel(self.operations_tab, text="Operacion:")
-        self.operation_label.pack()
+        self.operation_label.pack(pady=(15, 0))
 
         self.operation_var = StringVar(self.operations_tab)
         self.operation_var.set("Union")
@@ -77,23 +91,91 @@ class View:
             button_color="#5b5b5b",
             button_hover_color="#464646",
             dropdown_fg_color="#464646",
+            dropdown_hover_color="#5b5b5b",
             variable=self.operation_var,
             anchor="center",
             values=["Union", "Interseccion", "Differencia", "Differencia simetrica",
-                    "Es subconjunto de", "Es superconjunto de", "Igualdad", "Disjuncion"]
+                    "Es subconjunto de", "Es superconjunto de", "Son iguales", "Son disjuntos"]
         )
 
-        self.operations_menu.pack(pady=(0, 20))
+        self.operations_menu.pack(pady=(0, 15))
 
         self.result_label = CTkLabel(self.operations_tab, text="Resultado:")
         self.result_label.pack()
 
-        self.result_display = CTkLabel(self.operations_tab, text="")
+        self.result_display = CTkLabel(self.operations_tab, text="-")
         self.result_display.pack()
 
         self.operation_button = CTkButton(self.operations_tab, text="Realizar Operacion",
                                           command=self.perform_operation, fg_color="#134F6C")
-        self.operation_button.pack(pady=(20, 0))
+        self.operation_button.pack(pady=(10, 0))
+
+        # ** VISTA "RELACIONES" **
+
+        self.top_frame_relations = CTkFrame(self.relations_tab, fg_color="#343434")
+        self.top_frame_relations.pack(side="top", fill="both", padx=65, pady=(30, 0))
+
+        self.frame1_relations = CTkFrame(self.top_frame_relations, fg_color="#343434")
+        self.frame1_relations.pack(side="left", fill="both", expand=True, padx=(10, 0))
+
+        self.frame2_relations = CTkFrame(self.top_frame_relations, fg_color="#343434")
+        self.frame2_relations.pack(side="right", fill="both", expand=True, padx=(0, 10))
+
+        # Cuadro de entrada para el primer conjunto
+        self.first_set_name_label = CTkLabel(self.frame1_relations, text="1er Conjunto:")
+        self.first_set_name_label.pack()
+
+        self.first_set_name_relations_entry = CTkEntry(self.frame1_relations, width=70)
+        self.first_set_name_relations_entry.pack()
+
+        self.first_set_values_label_re = CTkLabel(self.frame1_relations, text="[ ]")
+        self.first_set_values_label_re.pack()
+
+        # Cuadro de entrada para el segundo conjunto
+        self.second_set_name_label = CTkLabel(self.frame2_relations, text="2do Conjunto:")
+        self.second_set_name_label.pack()
+
+        self.second_set_name_relations_entry = CTkEntry(self.frame2_relations, width=70)
+        self.second_set_name_relations_entry.pack()
+
+        self.second_set_values_label_re = CTkLabel(self.frame2_relations, text="[ ]")
+        self.second_set_values_label_re.pack()
+
+        self.set_relation_label = CTkLabel(self.relations_tab, text="Definir una relacion (pares ordenados):")
+        self.set_relation_label.pack(pady=(10, 0))
+
+        self.set_relation_entry = CTkEntry(self.relations_tab, placeholder_text="(a,b),(a,c),(b,c),(c,c)")
+        self.set_relation_entry.pack(pady=(0, 10))
+
+        self.relation_label = CTkLabel(self.relations_tab, text="Relacion:")
+        self.relation_label.pack()
+
+        self.relation_var = StringVar(self.relations_tab)
+        self.relation_var.set("Reflexiva")
+
+        self.relations_menu = CTkOptionMenu(
+            self.relations_tab,
+            fg_color="#5b5b5b",
+            button_color="#5b5b5b",
+            button_hover_color="#464646",
+            dropdown_fg_color="#464646",
+            dropdown_hover_color="#5b5b5b",
+            variable=self.relation_var,
+            anchor="center",
+            values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"]
+        )
+        self.relations_menu.pack(pady=(0, 15))
+
+        self.result_label = CTkLabel(self.relations_tab, text="Resultado:")
+        self.result_label.pack()
+
+        self.result_relation_display = CTkLabel(self.relations_tab, text="-")
+        self.result_relation_display.pack()
+
+        self.validate_relation_button = CTkButton(self.relations_tab, text="Comprobar relacion",
+                                                  command=self.check_relation,
+                                                  fg_color="#134F6C")
+        self.validate_relation_button.pack()
 
     # Metodos
     def create_set(self):
@@ -105,6 +187,10 @@ class View:
         else:
             messagebox.showerror("Input Error", "El nombre y los elementos del conjunto son requeridos.")
 
+    def on_create_set(self, set_name, elements):
+        """Este método será invocado por el controlador cuando se cree un conjunto"""
+        pass
+
     def perform_operation(self):
         first_set_name = self.first_set_name_entry.get()
         second_set_name = self.second_set_name_entry.get()
@@ -115,13 +201,42 @@ class View:
         else:
             messagebox.showerror("Input Error", "Los nombres de ambos conjuntos son requeridos.")
 
-    def update_result(self, result):
-        self.result_display.configure(text=str(result))
-
-    def on_create_set(self, set_name, elements):
-        """Este método será invocado por el controlador cuando se cree un conjunto"""
-        pass
-
     def on_perform_operation(self, first_set_name, second_set_name, operation):
         """Este método será invocado por el controlador cuando se realice una operación"""
+        pass
+
+    def update_operation_result(self, result):
+        self.result_display.configure(text=str(result))
+
+    def update_operation_set_labels(self, first_set_elements, second_set_elements):
+        first_set_text = f"[{', '.join(map(str, sorted(first_set_elements)))}]"
+        second_set_text = f"[{', '.join(map(str, sorted(second_set_elements)))}]"
+        self.first_set_values_label_op.configure(text=first_set_text)
+        self.second_set_values_label_op.configure(text=second_set_text)
+
+    def update_created_sets_display(self, sets_text):
+        self.created_sets_label.configure(text="Conjuntos:")
+        self.created_sets_display.configure(text=sets_text)
+
+    def update_relation_set_labels(self, first_set_elements, second_set_elements):
+        first_set_text = f"[{', '.join(map(str, sorted(first_set_elements)))}]"
+        second_set_text = f"[{', '.join(map(str, sorted(second_set_elements)))}]"
+        self.first_set_values_label_re.configure(text=first_set_text)
+        self.second_set_values_label_re.configure(text=second_set_text)
+
+    def check_relation(self):
+        first_set_name = self.first_set_name_relations_entry.get()
+        second_set_name = self.second_set_name_relations_entry.get()
+        relation_set = self.set_relation_entry.get()
+        relation_type = self.relation_var.get()
+        if first_set_name and second_set_name:
+            self.on_check_relation(first_set_name, second_set_name, relation_set, relation_type)
+        else:
+            messagebox.showerror("Input Error",
+                                 "Los nombres de ambos conjuntos y la relacion de pares ordenados son requeridos")
+
+    def update_relation_result(self, result):
+        self.result_relation_display.configure(text=str(result))
+
+    def on_check_relation(self, first_set_name, second_set_name, relation_set, relation_type):
         pass
