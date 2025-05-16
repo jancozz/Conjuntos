@@ -41,10 +41,13 @@ class View:
                                            fg_color="#134F6C")
         self.create_set_button.pack()
 
-        self.created_sets_label = CTkLabel(self.create_set_tab, text="")
-        self.created_sets_label.pack(pady=(20, 0))
+        self.sets_frame = CTkFrame(self.create_set_tab, fg_color="#292929")
+        self.sets_frame.pack(fill="both", expand=True, pady=20, padx=120)
 
-        self.created_sets_display = CTkLabel(self.create_set_tab, text="")
+        self.created_sets_label = CTkLabel(self.sets_frame, text="")
+        self.created_sets_label.pack()
+
+        self.created_sets_display = CTkLabel(self.sets_frame, text="")
         self.created_sets_display.pack(pady=(0, 20))
 
         # ** VISTA "OPERACIONES" **

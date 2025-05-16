@@ -1,0 +1,27 @@
+# Archivos de entornos virtuales
+venv/
+env/
+
+# Archivos compilados de Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Archivos de configuración de PyCharm
+.idea/
+
+# Archivos de logs
+*.log
+
+# Archivos de pruebas (si no son relevantes para el repositorio)
+*.tox/
+*.coverage
+nosetests.xml
+coverage.xml
+
+# Archivos generados por el sistema operativo
+.DS_Store         # macOS
+Thumbs.db         # Windows
+
+# Archivos de configuración de editores de texto
+*.swp             # Archivos temporales de Vim
