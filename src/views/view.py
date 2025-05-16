@@ -25,30 +25,33 @@ class View:
 
         # ** VISTA "CREAR CONJUNTO" **
 
-        self.set_name_label = CTkLabel(self.create_set_tab, text="Nombre:", text_color="#e8e8e8")
+        self.set_name_label = CTkLabel(self.create_set_tab, text="Nombre:", text_color="#e8e8e8",
+                                       font=("Arial", 13, "bold"))
         self.set_name_label.pack(pady=(30, 0))
 
-        self.set_name_entry = CTkEntry(self.create_set_tab, width=70)
+        self.set_name_entry = CTkEntry(self.create_set_tab, width=90, font=("Arial", 13))
         self.set_name_entry.pack(pady=(0, 20))
 
-        self.set_elements_label = CTkLabel(self.create_set_tab, text="Elementos (separados por comas):")
+        self.set_elements_label = CTkLabel(self.create_set_tab, text="Elementos (separados por comas):",
+                                           font=("Arial", 13, "bold"))
         self.set_elements_label.pack()
 
-        self.set_elements_entry = CTkEntry(self.create_set_tab)
+        self.set_elements_entry = CTkEntry(self.create_set_tab, font=("Arial", 13))
         self.set_elements_entry.pack(pady=(0, 20))
 
-        self.create_set_button = CTkButton(self.create_set_tab, text="Crear Conjunto", command=self.create_set,
+        self.create_set_button = CTkButton(self.create_set_tab, text="Crear Conjunto", font=("Arial", 13),
+                                           command=self.create_set,
                                            fg_color="#134F6C")
         self.create_set_button.pack()
 
         self.sets_frame = CTkFrame(self.create_set_tab, fg_color="#292929")
         self.sets_frame.pack(fill="both", expand=True, pady=20, padx=120)
 
-        self.created_sets_label = CTkLabel(self.sets_frame, text="")
+        self.created_sets_label = CTkLabel(self.sets_frame, text="", font=("Arial", 13))
         self.created_sets_label.pack()
 
-        self.created_sets_display = CTkLabel(self.sets_frame, text="")
-        self.created_sets_display.pack(pady=(0, 20))
+        self.created_sets_display = CTkLabel(self.sets_frame, text="", font=("Arial", 13))
+        self.created_sets_display.pack()
 
         # ** VISTA "OPERACIONES" **
 
@@ -62,27 +65,27 @@ class View:
         self.frame2.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
         # Cuadro de entrada para el primer conjunto
-        self.first_set_name_label = CTkLabel(self.frame1, text="1er Conjunto:")
+        self.first_set_name_label = CTkLabel(self.frame1, text="1er Conjunto:", font=("Arial", 13, "bold"))
         self.first_set_name_label.pack()
 
-        self.first_set_name_entry = CTkEntry(self.frame1, width=70)
+        self.first_set_name_entry = CTkEntry(self.frame1, width=90, font=("Arial", 13))
         self.first_set_name_entry.pack()
 
-        self.first_set_values_label_op = CTkLabel(self.frame1, text="[ ]")
+        self.first_set_values_label_op = CTkLabel(self.frame1, text="[ ]", font=("Arial", 13))
         self.first_set_values_label_op.pack()
 
         # Cuadro de entrada para el segundo conjunto
-        self.second_set_name_label = CTkLabel(self.frame2, text="2do Conjunto:")
+        self.second_set_name_label = CTkLabel(self.frame2, text="2do Conjunto:", font=("Arial", 13, "bold"))
         self.second_set_name_label.pack()
 
-        self.second_set_name_entry = CTkEntry(self.frame2, width=70)
+        self.second_set_name_entry = CTkEntry(self.frame2, width=90, font=("Arial", 13))
         self.second_set_name_entry.pack()
 
-        self.second_set_values_label_op = CTkLabel(self.frame2, text="[ ]")
+        self.second_set_values_label_op = CTkLabel(self.frame2, text="[ ]", font=("Arial", 13))
         self.second_set_values_label_op.pack()
 
         # Widgets para las operaciones entre conjuntos
-        self.operation_label = CTkLabel(self.operations_tab, text="Operacion:")
+        self.operation_label = CTkLabel(self.operations_tab, text="Operacion:", font=("Arial", 13, "bold"))
         self.operation_label.pack(pady=(15, 0))
 
         self.operation_var = StringVar(self.operations_tab)
@@ -98,18 +101,18 @@ class View:
             variable=self.operation_var,
             anchor="center",
             values=["Union", "Interseccion", "Differencia", "Differencia simetrica",
-                    "Es subconjunto de", "Es superconjunto de", "Son iguales", "Son disjuntos"]
+                    "Es subconjunto de", "Es superconjunto de", "Son iguales", "Son disjuntos"], font=("Arial", 13)
         )
 
         self.operations_menu.pack(pady=(0, 15))
 
-        self.result_label = CTkLabel(self.operations_tab, text="Resultado:")
+        self.result_label = CTkLabel(self.operations_tab, text="Resultado:", font=("Arial", 13, "bold"))
         self.result_label.pack()
 
-        self.result_display = CTkLabel(self.operations_tab, text="-")
+        self.result_display = CTkLabel(self.operations_tab, text="-", font=("Arial", 13))
         self.result_display.pack()
 
-        self.operation_button = CTkButton(self.operations_tab, text="Realizar Operacion",
+        self.operation_button = CTkButton(self.operations_tab, text="Realizar Operacion", font=("Arial", 13),
                                           command=self.perform_operation, fg_color="#134F6C")
         self.operation_button.pack(pady=(10, 0))
 
@@ -125,32 +128,33 @@ class View:
         self.frame2_relations.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
         # Cuadro de entrada para el primer conjunto
-        self.first_set_name_label = CTkLabel(self.frame1_relations, text="1er Conjunto:")
+        self.first_set_name_label = CTkLabel(self.frame1_relations, text="1er Conjunto:", font=("Arial", 13, "bold"))
         self.first_set_name_label.pack()
 
-        self.first_set_name_relations_entry = CTkEntry(self.frame1_relations, width=70)
+        self.first_set_name_relations_entry = CTkEntry(self.frame1_relations, width=90, font=("Arial",13))
         self.first_set_name_relations_entry.pack()
 
-        self.first_set_values_label_re = CTkLabel(self.frame1_relations, text="[ ]")
+        self.first_set_values_label_re = CTkLabel(self.frame1_relations, text="[ ]", font=("Arial", 13))
         self.first_set_values_label_re.pack()
 
         # Cuadro de entrada para el segundo conjunto
-        self.second_set_name_label = CTkLabel(self.frame2_relations, text="2do Conjunto:")
+        self.second_set_name_label = CTkLabel(self.frame2_relations, text="2do Conjunto:", font=("Arial", 13, "bold"))
         self.second_set_name_label.pack()
 
-        self.second_set_name_relations_entry = CTkEntry(self.frame2_relations, width=70)
+        self.second_set_name_relations_entry = CTkEntry(self.frame2_relations, width=90, font=("Arial",13))
         self.second_set_name_relations_entry.pack()
 
-        self.second_set_values_label_re = CTkLabel(self.frame2_relations, text="[ ]")
+        self.second_set_values_label_re = CTkLabel(self.frame2_relations, text="[ ]", font=("Arial", 13))
         self.second_set_values_label_re.pack()
 
-        self.set_relation_label = CTkLabel(self.relations_tab, text="Definir una relacion (pares ordenados):")
+        self.set_relation_label = CTkLabel(self.relations_tab, text="Definir una relacion (pares ordenados):",
+                                           font=("Arial", 13, "bold"))
         self.set_relation_label.pack(pady=(10, 0))
 
-        self.set_relation_entry = CTkEntry(self.relations_tab, placeholder_text="(a,b),(a,c),(b,c),(c,c)")
+        self.set_relation_entry = CTkEntry(self.relations_tab, width= 180, placeholder_text="(1,'b'),('a','c'),(2,3),('c',2)", font=("Arial",13))
         self.set_relation_entry.pack(pady=(0, 10))
 
-        self.relation_label = CTkLabel(self.relations_tab, text="Relacion:")
+        self.relation_label = CTkLabel(self.relations_tab, text="Relacion:", font=("Arial", 13, "bold"))
         self.relation_label.pack()
 
         self.relation_var = StringVar(self.relations_tab)
@@ -165,7 +169,7 @@ class View:
             dropdown_hover_color="#5b5b5b",
             variable=self.relation_var,
             anchor="center",
-            values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"]
+            values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"], font=("Arial",13)
         )
         self.relations_menu.pack(pady=(0, 15))
 
@@ -178,13 +182,14 @@ class View:
         self.result_display_frame = CTkFrame(self.result_main_frame, fg_color="#343434")
         self.result_display_frame.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
-        self.result_label = CTkLabel(self.result_label_frame, text="Resultado:")
+        self.result_label = CTkLabel(self.result_label_frame, text="Resultado:", font=("Arial", 13))
         self.result_label.pack(side="right")
 
-        self.result_relation_display = CTkLabel(self.result_display_frame, text="-")
+        self.result_relation_display = CTkLabel(self.result_display_frame, text="-", font=("Arial", 13))
         self.result_relation_display.pack(pady=5)
 
         self.validate_relation_button = CTkButton(self.relations_tab, text="Comprobar relacion",
+                                                  font=("Arial", 13),
                                                   command=self.check_relation,
                                                   fg_color="#134F6C")
         self.validate_relation_button.pack(pady=(15, 0))
