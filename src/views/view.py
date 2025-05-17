@@ -182,13 +182,13 @@ class View:
         self.result_display_frame = CTkFrame(self.result_main_frame, fg_color="#343434")
         self.result_display_frame.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
-        self.result_label = CTkLabel(self.result_label_frame, text="Resultado:", font=("Arial", 13))
+        self.result_label = CTkLabel(self.result_label_frame, text="Resultado:", font=("Arial", 13, "bold"))
         self.result_label.pack(side="right")
 
         self.result_relation_display = CTkLabel(self.result_display_frame, text="-", font=("Arial", 13))
         self.result_relation_display.pack(pady=5)
 
-        self.validate_relation_button = CTkButton(self.relations_tab, text="Comprobar relacion",
+        self.validate_relation_button = CTkButton(self.relations_tab, text="Comprobar Relacion",
                                                   font=("Arial", 13),
                                                   command=self.check_relation,
                                                   fg_color="#134F6C")
