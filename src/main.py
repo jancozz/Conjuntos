@@ -8,7 +8,6 @@ def main():
     root = CTk()
     root.title("App Conjuntos")
     root.geometry("450x450")
-    set_appearance_mode("dark")
 
     model = Model()
     view = View(root)

@@ -86,7 +86,7 @@ class View:
 
         # Widgets para las operaciones entre conjuntos
         self.operation_label = CTkLabel(self.operations_tab, text="Operacion:", font=("Arial", 13, "bold"))
-        self.operation_label.pack(pady=(15, 0))
+        self.operation_label.pack(pady=(20, 0))
 
         self.operation_var = StringVar(self.operations_tab)
         self.operation_var.set("Union")
@@ -131,7 +131,7 @@ class View:
         self.first_set_name_label = CTkLabel(self.frame1_relations, text="1er Conjunto:", font=("Arial", 13, "bold"))
         self.first_set_name_label.pack()
 
-        self.first_set_name_relations_entry = CTkEntry(self.frame1_relations, width=90, font=("Arial",13))
+        self.first_set_name_relations_entry = CTkEntry(self.frame1_relations, width=90, font=("Arial", 13))
         self.first_set_name_relations_entry.pack()
 
         self.first_set_values_label_re = CTkLabel(self.frame1_relations, text="[ ]", font=("Arial", 13))
@@ -141,7 +141,7 @@ class View:
         self.second_set_name_label = CTkLabel(self.frame2_relations, text="2do Conjunto:", font=("Arial", 13, "bold"))
         self.second_set_name_label.pack()
 
-        self.second_set_name_relations_entry = CTkEntry(self.frame2_relations, width=90, font=("Arial",13))
+        self.second_set_name_relations_entry = CTkEntry(self.frame2_relations, width=90, font=("Arial", 13))
         self.second_set_name_relations_entry.pack()
 
         self.second_set_values_label_re = CTkLabel(self.frame2_relations, text="[ ]", font=("Arial", 13))
@@ -149,10 +149,11 @@ class View:
 
         self.set_relation_label = CTkLabel(self.relations_tab, text="Definir una relacion (pares ordenados):",
                                            font=("Arial", 13, "bold"))
-        self.set_relation_label.pack(pady=(10, 0))
+        self.set_relation_label.pack(pady=(20, 0))
 
-        self.set_relation_entry = CTkEntry(self.relations_tab, width= 180, placeholder_text="(1,'b'),('a','c'),(2,3),('c',2)", font=("Arial",13))
-        self.set_relation_entry.pack(pady=(0, 10))
+        self.set_relation_entry = CTkEntry(self.relations_tab, width=180,
+                                           placeholder_text="(1,'b'),('a','c'),(2,3),('c',2)", font=("Arial", 13))
+        self.set_relation_entry.pack(pady=(0, 20))
 
         self.relation_label = CTkLabel(self.relations_tab, text="Relacion:", font=("Arial", 13, "bold"))
         self.relation_label.pack()
@@ -169,7 +170,7 @@ class View:
             dropdown_hover_color="#5b5b5b",
             variable=self.relation_var,
             anchor="center",
-            values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"], font=("Arial",13)
+            values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"], font=("Arial", 13)
         )
         self.relations_menu.pack(pady=(0, 15))
 
