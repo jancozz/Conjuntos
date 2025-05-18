@@ -11,7 +11,7 @@ def main():
 
     model = Model()
     view = View(root)
-    controller = Controller(view, model)
+    Controller(view, model)
 
     root.mainloop()
 

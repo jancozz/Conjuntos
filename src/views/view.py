@@ -10,16 +10,13 @@ class View:
         self.master = master
         self.master.configure(bg="blue")
 
-        # Crear el contenedor de las pestañas
         self.notebook = ttk.Notebook(master)
         self.notebook.pack(fill=tk.BOTH, expand=True)
 
-        # Crear las vistas para las pestañas
         self.create_set_tab = CTkFrame(self.notebook, fg_color="#343434")
         self.operations_tab = CTkFrame(self.notebook, fg_color="#343434")
         self.relations_tab = CTkFrame(self.notebook, fg_color="#343434")
 
-        # Añadir las pestañas al Notebook
         self.notebook.add(self.create_set_tab, text=" Crear Conjunto ")
         self.notebook.add(self.operations_tab, text="  Operaciones  ")
         self.notebook.add(self.relations_tab, text="   Relaciones   ")
@@ -65,7 +62,6 @@ class View:
         self.frame2 = CTkFrame(self.top_frame, fg_color="#343434")
         self.frame2.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
-        # Cuadro de entrada para el primer conjunto
         self.first_set_name_label = CTkLabel(self.frame1, text="1er Conjunto:", font=("Arial", 13, "bold"))
         self.first_set_name_label.pack()
 
@@ -75,7 +71,6 @@ class View:
         self.first_set_values_label_op = CTkLabel(self.frame1, text="[ ]", font=("Arial", 13))
         self.first_set_values_label_op.pack()
 
-        # Cuadro de entrada para el segundo conjunto
         self.second_set_name_label = CTkLabel(self.frame2, text="2do Conjunto:", font=("Arial", 13, "bold"))
         self.second_set_name_label.pack()
 
@@ -85,7 +80,6 @@ class View:
         self.second_set_values_label_op = CTkLabel(self.frame2, text="[ ]", font=("Arial", 13))
         self.second_set_values_label_op.pack()
 
-        # Widgets para las operaciones entre conjuntos
         self.operation_label = CTkLabel(self.operations_tab, text="Operacion:", font=("Arial", 13, "bold"))
         self.operation_label.pack(pady=(20, 0))
 
@@ -128,7 +122,6 @@ class View:
         self.frame2_relations = CTkFrame(self.top_frame_relations, fg_color="#343434")
         self.frame2_relations.pack(side="right", fill="both", expand=True, padx=(0, 10))
 
-        # Cuadro de entrada para el primer conjunto
         self.first_set_name_label = CTkLabel(self.frame1_relations, text="1er Conjunto:", font=("Arial", 13, "bold"))
         self.first_set_name_label.pack()
 
@@ -138,7 +131,6 @@ class View:
         self.first_set_values_label_re = CTkLabel(self.frame1_relations, text="[ ]", font=("Arial", 13))
         self.first_set_values_label_re.pack()
 
-        # Cuadro de entrada para el segundo conjunto
         self.second_set_name_label = CTkLabel(self.frame2_relations, text="2do Conjunto:", font=("Arial", 13, "bold"))
         self.second_set_name_label.pack()
 
@@ -204,7 +196,7 @@ class View:
                                                   fg_color="#134F6C")
         self.validate_relation_button.pack(pady=(15, 0))
 
-    # Metodos
+    # ** "METODOS" **
     def create_set(self):
         set_name = self.set_name_entry.get()
         elements = self.set_elements_entry.get()
