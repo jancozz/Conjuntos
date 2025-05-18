@@ -1,5 +1,6 @@
 from ast import literal_eval
 from tkinter import messagebox
+import random
 
 
 class Controller:
@@ -10,6 +11,7 @@ class Controller:
         self.view.on_create_set = self.create_set
         self.view.on_perform_operation = self.perform_operation
         self.view.on_check_relation = self.check_relation
+        self.view.on_generate_random_relation = self.generate_random_relation
 
     def create_set(self, set_name, elements):
         self.model.create_set(set_name, elements)
@@ -84,3 +86,28 @@ class Controller:
 
         except (SyntaxError, ValueError) as e:
             messagebox.showerror("Input Error", f"El formato de la relación no es válido: {e}")
+
+    def generate_random_relation(self, first_set_name, second_set_name, relation_type):
+        set1 = self.model.get_set(first_set_name)
+        set2 = self.model.get_set(second_set_name)
+
+        if not set1:
+            raise ValueError(f"El conjunto {first_set_name} debe contener al menos un elemento.")
+        if not set2:
+            raise ValueError(f"El conjunto {second_set_name} debe contener al menos un elemento.")
+
+        if relation_type == "Reflexiva":
+            relation = self.model.generate_reflexive_set(first_set_name, second_set_name)
+        elif relation_type == "Simetrica":
+            relation = self.model.generate_random_symmetric_set(first_set_name, second_set_name)
+        elif relation_type == "Antisimetrica":
+            relation = self.model.generate_random_antisymmetric_set(first_set_name, second_set_name)
+        elif relation_type == "Transitiva":
+            relation = self.model.generate_random_transitive_set(first_set_name, second_set_name)
+
+        first_set_elements = self.model.get_set(first_set_name)
+        second_set_elements = self.model.get_set(second_set_name)
+
+        self.view.update_relation_set_labels(first_set_elements, second_set_elements)
+
+        self.view.update_random_set_entry(relation)

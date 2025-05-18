@@ -1,3 +1,6 @@
+import random
+
+
 class SetOperationsModel:
     def __init__(self):
         self.sets = {}
@@ -52,7 +55,6 @@ class SetOperationsModel:
         return set1.isdisjoint(set2)
 
     def check_elements_in_sets(self, relation_set, set1, set2):
-        """ Verifica que los elementos en relation_set estén en al menos uno de los dos conjuntos """
         for (a, b) in relation_set:
             a, b = str(a), str(b)
             if a not in set1 and a not in set2:
@@ -114,3 +116,74 @@ class SetOperationsModel:
                     if (a, c) not in relation_set:
                         return False
         return True
+
+    def generate_reflexive_set(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+
+        combined_set = set1.union(set2)
+
+        reflexive_set = set()
+
+        for a in combined_set:
+            reflexive_set.add((a, a))
+        return sorted(reflexive_set)
+
+    def generate_random_symmetric_set(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+
+        possible_pairs = set(
+            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+        )
+
+        symmetric_set = set()
+
+        selected_pairs = random.sample(list(possible_pairs), 2)
+
+        for (a, b) in selected_pairs:
+            symmetric_set.add((a, b))
+            symmetric_set.add((b, a))
+        return symmetric_set
+
+    def generate_random_antisymmetric_set(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+
+        possible_pairs = set(
+            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+        )
+
+        antisymmetric_set = set()
+
+        selected_pairs = random.sample(list(possible_pairs), random.choice([3, 4]))
+
+        for (a, b) in selected_pairs:
+            if (b, a) not in antisymmetric_set:
+                antisymmetric_set.add((a, b))
+        return antisymmetric_set
+
+    def generate_random_transitive_set(self, set1_name, set2_name):
+        set1 = self.get_set(set1_name)
+        set2 = self.get_set(set2_name)
+
+        possible_pairs = set(
+            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+        )
+
+        transitive_set = set()
+
+        first_pair = random.choice(list(possible_pairs))
+        transitive_set.add(first_pair)
+
+        a, b = first_pair
+
+        second_pair = random.choice([pair for pair in possible_pairs if pair[0] == b])
+        transitive_set.add(second_pair)
+
+        b, c = second_pair
+
+        third_pair = (a, c)
+        transitive_set.add(third_pair)
+
+        return transitive_set

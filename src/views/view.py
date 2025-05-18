@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from customtkinter import *
+import src.controllers.controller
 
 
 class View:
@@ -149,11 +150,11 @@ class View:
 
         self.set_relation_label = CTkLabel(self.relations_tab, text="Definir una relacion (pares ordenados):",
                                            font=("Arial", 13, "bold"))
-        self.set_relation_label.pack(pady=(20, 0))
+        self.set_relation_label.pack(pady=(7, 0))
 
         self.set_relation_entry = CTkEntry(self.relations_tab, width=180,
                                            placeholder_text="(1,'b'),('a','c'),(2,3),('c',2)", font=("Arial", 13))
-        self.set_relation_entry.pack(pady=(0, 20))
+        self.set_relation_entry.pack(pady=(0, 15))
 
         self.relation_label = CTkLabel(self.relations_tab, text="Relacion:", font=("Arial", 13, "bold"))
         self.relation_label.pack()
@@ -173,6 +174,14 @@ class View:
             values=["Reflexiva", "Simetrica", "Antisimetrica", "Transitiva"], font=("Arial", 13)
         )
         self.relations_menu.pack(pady=(0, 15))
+
+        self.generate_relation_button = CTkButton(self.relations_tab,
+                                                  width=125,
+                                                  text="Generar Relacion",
+                                                  font=("Arial", 13),
+                                                  command=self.generate_random_relation,
+                                                  fg_color="#134F6C")
+        self.generate_relation_button.pack(pady=10)
 
         self.result_main_frame = CTkFrame(self.relations_tab, fg_color="#343434")
         self.result_main_frame.pack(fill="both", padx=155)
@@ -258,3 +267,21 @@ class View:
 
     def on_check_relation(self, first_set_name, second_set_name, relation_set, relation_type):
         pass
+
+    def generate_random_relation(self):
+        first_set_name = self.first_set_name_relations_entry.get()
+        second_set_name = self.second_set_name_relations_entry.get()
+        relation_type = self.relation_var.get()
+        if first_set_name and second_set_name:
+            self.on_generate_random_relation(first_set_name, second_set_name, relation_type)
+        else:
+            messagebox.showerror("Input Error", "Los nombres de ambos conjuntos son requeridos.")
+
+    def on_generate_random_relation(self, first_set_name, second_set_name, relation_type):
+        """Este método será invocado por el controlador cuando se realice una operación"""
+        pass
+
+    def update_random_set_entry(self, relation):
+        self.set_relation_entry.delete(0, tk.END)
+        relation_str = ','.join([f"({a},{b})" for a, b in relation])
+        self.set_relation_entry.insert(0, relation_str)
