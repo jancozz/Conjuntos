@@ -1,6 +1,5 @@
 from ast import literal_eval
 from tkinter import messagebox
-import random
 
 
 class Controller:
@@ -8,14 +7,13 @@ class Controller:
         self.view = view
         self.model = model
 
-        self.view.on_create_set = self.create_set
-        self.view.on_perform_operation = self.perform_operation
-        self.view.on_check_relation = self.check_relation
-        self.view.on_generate_random_relation = self.generate_random_relation
+        view.on_create_set = self.create_set
+        view.on_perform_operation = self.perform_operation
+        view.on_check_relation = self.check_relation
+        view.on_generate_random_relation = self.generate_random_relation
 
     def create_set(self, set_name, elements):
         self.model.create_set(set_name, elements)
-        # messagebox.showinfo("Conjunto Creado", f"Conjunto {set_name} creado exitosamente: {elements}")
         self.update_created_sets()
 
     def perform_operation(self, set_name, second_set_name, operation):

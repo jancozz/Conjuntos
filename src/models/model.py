@@ -134,7 +134,8 @@ class SetOperationsModel:
         set2 = self.get_set(set2_name)
 
         possible_pairs = set(
-            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1] + [
+                (b, b) for b in set2]
         )
 
         symmetric_set = set()
@@ -151,12 +152,13 @@ class SetOperationsModel:
         set2 = self.get_set(set2_name)
 
         possible_pairs = set(
-            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1] + [
+                (b, b) for b in set2]
         )
 
         antisymmetric_set = set()
 
-        selected_pairs = random.sample(list(possible_pairs), random.choice([3, 4]))
+        selected_pairs = random.sample(list(possible_pairs), 4)
 
         for (a, b) in selected_pairs:
             if (b, a) not in antisymmetric_set:
@@ -168,7 +170,7 @@ class SetOperationsModel:
         set2 = self.get_set(set2_name)
 
         possible_pairs = set(
-            [(a, b) for a in set1 for b in set2] + [(b, a) for a in set1 for b in set2] + [(a, a) for a in set1]
+            [(a, b) for a in set1 for b in set2] + [(b, a) for b in set2 for a in set1]
         )
 
         transitive_set = set()
