@@ -62,7 +62,7 @@ class Controller:
             return
 
         try:
-            relation_set = literal_eval(relation_set)  # Convierte el string a una lista de tuplas
+            relation_set = literal_eval(relation_set)
             if not all(isinstance(pair, tuple) and len(pair) == 2 for pair in relation_set):
                 raise ValueError("La relación debe ser una lista de tuplas de dos elementos.")
 

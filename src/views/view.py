@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 from customtkinter import *
-import src.controllers.controller
 
 
 class View:
