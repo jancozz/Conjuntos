@@ -7,7 +7,8 @@ from models.model import SetOperationsModel as Model
 def main():
     root = CTk()
     root.title("App Conjuntos")
-    root.geometry("450x450")
+    root.geometry(
+        f"{450}x{450}+{int(root.winfo_screenwidth() / 2 - 225)}+{int(root.winfo_screenheight() / 2 - 225)}")
 
     model = Model()
     view = View(root)

@@ -90,9 +90,9 @@ class Controller:
         set2 = self.model.get_set(second_set_name)
 
         if not set1:
-            raise ValueError(f"El conjunto {first_set_name} debe contener al menos un elemento.")
+            messagebox.showerror("Operation Error", f"El conjunto {first_set_name} debe contener al menos un elemento.")
         if not set2:
-            raise ValueError(f"El conjunto {second_set_name} debe contener al menos un elemento.")
+            messagebox.showerror("Operation Error", f"El conjunto {second_set_name} debe contener al menos un elemento.")
 
         if relation_type == "Reflexiva":
             relation = self.model.generate_reflexive_set(first_set_name, second_set_name)
