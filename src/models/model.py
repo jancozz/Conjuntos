@@ -17,42 +17,101 @@ class SetOperationsModel:
     def union(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return sorted(set1.union(set2))
+
+        union_set = set()
+
+        for a in set1:
+            union_set.add(a)
+            for b in set2:
+                union_set.add(b)
+
+        return sorted(union_set)
 
     def intersection(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return sorted(set1.intersection(set2))
+
+        intersection_set = set()
+
+        for a in set1:
+            if a in set2:
+                intersection_set.add(a)
+
+        for b in set2:
+            if b in set1:
+                intersection_set.add(b)
+
+        return sorted(intersection_set)
 
     def difference(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return sorted(set1.difference(set2))
+
+        difference_set = set()
+
+        for a in set1:
+            if a not in set2:
+                difference_set.add(a)
+
+        return sorted(difference_set)
 
     def symmetric_difference(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return sorted(set1.symmetric_difference(set2))
+
+        s_difference_set = set()
+
+        for a in set1:
+            if a not in set2:
+                s_difference_set.add(a)
+
+        for b in set2:
+            if b not in set1:
+                s_difference_set.add(b)
+
+        return sorted(s_difference_set)
 
     def is_subset(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return set1.issubset(set2)
+
+        for a in set1:
+            if a not in set2:
+                return False
+
+        return True
 
     def is_superset(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return set1.issuperset(set2)
+
+        for b in set2:
+            if b not in set1:
+                return False
+
+        return True
 
     def is_equal(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return set1 == set2
+
+        if len(set1) != len(set2):
+            return False
+
+        for x in set1:
+            if x not in set2:
+                return False
+
+        return True
 
     def is_disjoint(self, set1_name, set2_name):
         set1 = self.get_set(set1_name)
         set2 = self.get_set(set2_name)
-        return set1.isdisjoint(set2)
+
+        for x in set1:
+            if x in set2:
+                return False
+        return True
 
     def check_elements_in_sets(self, relation_set, set1, set2):
         for (a, b) in relation_set:
